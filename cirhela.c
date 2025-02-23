@@ -48,31 +48,30 @@ void mid_insert(int x,int pos)
 		return;
 	}
 	create(x);
-	struct Node *temp=tail->next;
+	
 	int count=1;
 	if(tail==NULL)
 	{
 		tail=newNode;
 		newNode->next=newNode;
+		return;
 	}
-	else
+	struct Node *temp=tail->next;
+	while(temp!=tail)
 	{
-		while(temp!=tail)
+		if(count==pos-1)
 		{
-			if(count==pos-1)
-			{
-				newNode->next=temp->next;
-				temp->next=newNode;
-				return;
-			}
-			count++;
-			temp=temp->next;
-			
+			newNode->next=temp->next;
+			temp->next=newNode;
+			return;
 		}
-		printf("Position Out of Bound");
+		count++;
+		temp=temp->next;
+			
 	}
-
+	printf("Position Out of Bound");
 }
+
 void end_insert(int x)
 {
 	int co=get_length();
